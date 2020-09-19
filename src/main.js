@@ -4,6 +4,11 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+import { Button,Popup } from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Button).use(Popup);
+
+
 Vue.config.productionTip = false
 
 new Vue({
