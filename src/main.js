@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './plugins/axios'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
@@ -7,6 +8,9 @@ import store from './store'
 import { Button,Popup } from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Button).use(Popup);
+
+import axios from "axios";
+Vue.prototype.$ajax = axios;
 
 
 Vue.config.productionTip = false

@@ -56,6 +56,14 @@
         ]
       }
     },
+    mounted() {
+      this.$ajax({
+        method:'get',
+        url:"./recordApi/menuList.json"
+      }).then((response)=>{
+        this.payList = response.data.data
+      })
+    }
 
 
   }
@@ -88,9 +96,15 @@
   }
 }
   .menu{
-    border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
+    overflow: auto;
+    height: 80vh;
+    scrollbar-width: none;
+    /* for Chrome */
+    &::-webkit-scrollbar {
+      display: none;
+    }
     >.menu-content{
       width: 25%;
       /*border: 1px solid red;*/
