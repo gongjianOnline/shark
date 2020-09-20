@@ -12,7 +12,10 @@ module.exports = {
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    "no-console": "off",
+    "no-unused-vars":"off", //重要 var 变量为引入
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
   },
   overrides: [
     {

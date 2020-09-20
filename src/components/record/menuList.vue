@@ -4,12 +4,12 @@
     <div class="menu">
       <div class="menu-content"
            v-for="(item,index) in payList"
-           :key="index"
-           @click="menuPitch(item)">
+           :key="index">
         <div class="menu-ico"
-             :class="menuPitchIndex===item.name?'selected':''">
+             @click="menuPitch(item)"
+             :class="menuPitchIndex.name===item.name?'selected':''">
           <span class="icon iconfont"
-                :class="menuPitchIndex===item.name?'selected':''"
+                :class="menuPitchIndex.name===item.name?'selected':''"
                 v-html="item.icon"></span>
         </div>
         <div class="menu-title">
@@ -17,18 +17,23 @@
         </div>
       </div>
     </div>
+    <Clavier :modeShow="isModeType"
+             @numberPadsClose="numberPadsClose"
+             @onBlurs="recordFun"/>
   </div>
 </template>
 
 <script lang="js">
   import Type from "./type";
+  import Clavier from "./clavier"
   export default {
     name: "menuList",
-    components: {Type},
+    components: {Clavier, Type},
     data(){
       return{
         payList:[],
-        menuPitchIndex:""
+        menuPitchIndex:"",
+        isModeType:false,
       }
     },
     mounted() {
@@ -50,7 +55,32 @@
         })
       },
       menuPitch(item){
-        this.menuPitchIndex = item.name;
+        this.menuPitchIndex = item;
+        this.isModeType = true;
+      },
+      numberPadsClose(type){
+        this.isModeType = type
+      },
+      recordFun(data){
+        let getData = window.localStorage.get("account");
+        let datas = [
+          {
+            "2020-9":{
+              "20":[
+                {
+                  name:'购物',
+                  state:"支出",
+                  price:"200"
+                }
+              ]
+            }
+          }
+        ];
+
+
+
+
+
       }
     }
   }
@@ -80,6 +110,7 @@
         height: 69px;
         border-radius: 50%;
         background: #f5f5f5;
+        text-align: center;
         > .iconfont{
           font-size: 32px;
           line-height: 69px;
