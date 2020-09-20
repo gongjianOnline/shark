@@ -12,6 +12,7 @@ Vue.use(Button).use(Popup);
 import axios from "axios";
 Vue.prototype.$ajax = axios;
 
+import "./assets/menuIcon/iconfont.css"
 
 Vue.config.productionTip = false
 
