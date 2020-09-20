@@ -25,7 +25,8 @@
 
 <script lang="js">
   import Type from "./type";
-  import Clavier from "./clavier"
+  import Clavier from "./clavier";
+  import dayjs from 'dayjs'
   export default {
     name: "menuList",
     components: {Clavier, Type},
@@ -37,7 +38,9 @@
       }
     },
     mounted() {
-      this.updateMenu('-')
+      this.updateMenu('-');
+      console.log("打印时间")
+      console.log(dayjs().format('YYYY-MM-DD'))
     },
     methods:{
       updateMenu(data){
