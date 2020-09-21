@@ -52,6 +52,7 @@
           Dialog({ message: '金额不能为空' });
         }else{
           this.$emit('onBlurs',this.numberPads);
+          this.numberPads = "";
         }
         this.$emit("numberPadsClose",false)
       },
