@@ -1,15 +1,28 @@
 <template>
   <div>
-    hello 统计页面
+
+
   </div>
 </template>
 
 <script lang="js">
   export default {
-    name: "statistics"
+    name: "statistics",
+    data(){
+      return{
+
+      }
+    },
+    methods:{
+
+    }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+
+
+
+
 
 </style>
