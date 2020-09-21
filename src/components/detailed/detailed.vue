@@ -26,7 +26,11 @@
         </div>
       </div>
     </div>
-    <div v-show="filterList.length === 0">
+    <div v-show="filterList.length === 0" class="fill-wrapper">
+      <div>
+        <img :src="require('../../assets/img/null.jpg')" alt="" class="fill-Img">
+        <p class="fill-content">没有本月记录</p>
+      </div>
 
     </div>
   </div>
@@ -99,6 +103,7 @@
           this.totalBill()
         }else{
           this.filterList = [];
+          this.$emit("totalNumber",{totalExpenditure:0,totalIncome:0})
         }
       },
       //计算本月总数
@@ -169,4 +174,17 @@
       }
     }
   }
+  .fill-wrapper{
+    height: 79vh;
+    display: flex;
+    align-items: center;
+    .fill-Img{
+      width: 60%;
+    }
+    .fill-content{
+      font-size: 24px;
+      color:@textColor;
+    }
+  }
+
 </style>
