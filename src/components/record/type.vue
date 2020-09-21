@@ -30,8 +30,8 @@
 
 <style lang="less" scoped>
   .head-container{
-    background: #453300;
-    color: #e0dbd2;
+    background: #1989fa;
+    color: #fafafa;
     font-size: 24px;
     > .center{
       display: inline-block;

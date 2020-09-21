@@ -7,7 +7,7 @@
       <div class="detailed-date">
         <div>{{item.day}}</div>
         <div>
-          <span>收入: {{item.dayExpenditure}}</span>
+          <span class="dayAccount">收入: {{item.dayExpenditure}}</span>
           <span>支出: {{item.dayIncome}}</span>
         </div>
       </div>
@@ -115,16 +115,17 @@
           Income += item.dayIncome
         })
         this.$emit("totalNumber",{totalExpenditure:Expenditure,totalIncome:Income})
-      }
+      },
+
 
     }
   }
 </script>
 
 <style lang="less" scoped>
-  @backColor:#1b1b1b;
-  @textColor:#474747;
-  @iconColor:#e1e0e0;
+  @backColor:#fff;
+  @textColor:#f7f8fa;
+  @iconColor:#606266;
   .detailed-wrapper{
     height: 81vh;
     overflow: auto;
@@ -138,7 +139,11 @@
       display: flex;
       justify-content: space-between;
       padding: 10px 20px;
-      border-bottom: 1px solid #313131;
+      border-bottom: 1px solid rgba(192, 196, 204, 0.32);
+      .dayAccount{
+        padding-right: 10px;
+        display: inline-block;
+      }
     }
     > .detailed-content{
       display: flex;
@@ -153,7 +158,7 @@
         > .icon{
           width: 54px;
           height: 54px;
-          background: #ccc;
+          background: #EBEEF5;
           border-radius: 50%;
           > .iconColor{
             color:#2c3e50;
@@ -183,7 +188,7 @@
     }
     .fill-content{
       font-size: 24px;
-      color:@textColor;
+      color:@iconColor;
     }
   }
 

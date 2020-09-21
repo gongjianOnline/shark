@@ -68,8 +68,8 @@
 
 <style lang="less" scoped>
   @deep: ~'>>>';
-  @bacolor:#453300;
-  @titleColor:#9b9381;
+  @bacolor:#1989fa;
+  @titleColor:#fafdfd;
   @dateColor:#fafdfd;
   .head-wrapper{
     background: @bacolor;
