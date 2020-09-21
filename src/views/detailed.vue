@@ -1,15 +1,23 @@
 <template>
   <div>
-    hello 明细页
+    <Header/>
+    <Detailed/>
+
+
+
+
   </div>
 </template>
 
 <script lang="js">
+  import Header from "../components/detailed/Header";
+  import Detailed from "../components/detailed/detailed"
   export default {
-    name: "detailed"
+    name: "detailed",
+    components: {Header,Detailed}
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 
 </style>
