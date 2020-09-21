@@ -1,32 +1,118 @@
 <template>
   <div>
-    <div class="detailed-wrapper">
+    <div class="detailed-wrapper"
+         v-for="(item,index) in filterList"
+         :key="index"
+          v-show="!(filterList.length === 0)">
       <div class="detailed-date">
-        <div>09月19日</div>
+        <div>{{item.day}}</div>
         <div>
-          <span>收入: 96</span>
-          <span>支出: 99</span>
+          <span>收入: {{item.dayExpenditure}}</span>
+          <span>支出: {{item.dayIncome}}</span>
         </div>
       </div>
-      <div class="detailed-content">
+      <div class="detailed-content"
+           v-for="(itemChild,indexChild) in item.dataList"
+           :key="indexChild">
         <div class="detailed-ICO">
           <div class="icon">
-            icon
+            <span class="icon iconfont iconColor"
+                  v-html="itemChild.icon"></span>
           </div>
-          <div class="icon-title">工资</div>
+          <div class="icon-title">{{itemChild.name}}</div>
         </div>
         <div class="price-content">
-          96
+          {{itemChild.price}}
         </div>
       </div>
+    </div>
+    <div v-show="filterList.length === 0">
 
     </div>
   </div>
 </template>
 
-<script>
+<script lang="js">
+  import account from "../../lib/accountData";
   export default {
-    name: "detailed"
+    name: "detailed",
+    props:{
+      queryDate:{
+        default:null,
+      }
+    },
+    watch:{
+      queryDate(newVal,oldVal){
+        this.lookupData()
+      },
+    },
+    data(){
+      return{
+        DetailList:[],
+        filterList:[],
+      }
+    },
+    mounted() {
+      this.lookupData()
+    },
+    methods:{
+      lookupData(){
+        this.DetailList = [];
+        let date = `${this.queryDate.year}-${this.queryDate.month}`;
+        let data = account.getAccount();
+        if(data){
+          data.forEach((item,index)=>{
+            for(let key in item){
+              if(key === date){
+                this.DetailList.push(item[key])
+              }
+            }
+          });
+          this.format(this.DetailList,this.queryDate.month)
+        }
+
+      },
+      //初始化数据
+      format(data,month){
+        if(data.length > 0){
+          let init_data = []
+          data.forEach((item,index)=>{
+              for(let key in item){
+                let obj = {
+                  day:`${month}月${key}日`,
+                  dataList:item[key],
+                  dayExpenditure:0,
+                  dayIncome:0
+                }
+                item[key].forEach((listItem,listIndex)=>{
+                  if(listItem.type==="include"){
+                    obj.dayIncome += parseFloat(listItem.price)
+                  }else{
+                    obj.dayExpenditure += parseFloat(listItem.price)
+                  }
+                })
+                init_data.push(obj)
+              }
+          })
+          console.log(init_data)
+          this.filterList = init_data;
+          this.totalBill()
+        }else{
+          this.filterList = [];
+        }
+      },
+      //计算本月总数
+      totalBill(){
+        let Expenditure = 0;
+        let Income = 0;
+        this.filterList.forEach((item,index)=>{
+          Expenditure += item.dayExpenditure;
+          Income += item.dayIncome
+        })
+        this.$emit("totalNumber",{totalExpenditure:Expenditure,totalIncome:Income})
+      }
+
+    }
   }
 </script>
 
@@ -35,7 +121,14 @@
   @textColor:#474747;
   @iconColor:#e1e0e0;
   .detailed-wrapper{
+    height: 81vh;
+    overflow: auto;
     background: @backColor;
+    scrollbar-width: none;
+    /* for Chrome */
+    &::-webkit-scrollbar {
+      display: none;
+    }
     >.detailed-date{
       display: flex;
       justify-content: space-between;
@@ -57,6 +150,11 @@
           height: 54px;
           background: #ccc;
           border-radius: 50%;
+          > .iconColor{
+            color:#2c3e50;
+            font-size: 32px;
+            line-height: 54px;
+          }
         }
         > .icon-title{
           padding-left: 10px;

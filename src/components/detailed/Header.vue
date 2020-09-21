@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="head-wrapper">
-      <div class="date-wrapper">
-        <div class="year">2020</div>
+      <div class="date-wrapper" @click="choiceFun">
+        <div class="year">{{queryDate.year || 0}}</div>
         <div class="month">
-          9
+          {{queryDate.month || 0}}
           <span class="tagging">月</span>
           <span class="icon">
             <van-icon name="arrow-down" />
@@ -16,11 +16,11 @@
         <div class="border"></div>
         <div class="income">
           <div class="title">收入</div>
-          <div class="price">100.00</div>
+          <div class="price">{{totalBill.totalIncome}}</div>
         </div>
         <div class="expenditure">
           <div class="title">支出</div>
-          <div class="price">100.00</div>
+          <div class="price">{{totalBill.totalExpenditure}}</div>
         </div>
       </div>
     </div>
@@ -29,10 +29,40 @@
 
 <script lang="js">
   import Vue from 'vue';
-  import { Icon } from 'vant';
+  import { Icon,DatetimePicker } from 'vant';
   Vue.use(Icon);
+  Vue.use(DatetimePicker);
   export default {
-    name: "Headers"
+    name: "Headers",
+    date(){
+      return{
+        currentDate: new Date(),
+      }
+    },
+    props:{
+      queryDate:{
+        type:Object,
+        default:null
+      },
+      totalBill:{
+        type:Object,
+        default:null
+      }
+    },
+    methods:{
+      choiceFun(){
+        this.$emit("choiceFun",true)
+      },
+      formatter(type, val) {
+        if (type === 'year') {
+          return `${val}年`;
+        } else if (type === 'month') {
+          return `${val}月`;
+        }
+        return val;
+      },
+
+    }
   }
 </script>
 
