@@ -32,6 +32,10 @@ export default {
 </script>
 <style lang="less" scoped>
   @deep: ~'>>>';
+  .home{
+    max-width: 414px;
+    margin: 0 auto;
+  }
   .Main-view{
     height: 100vh;
     display: flex;
