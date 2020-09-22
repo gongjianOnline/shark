@@ -14,7 +14,7 @@
   export default {
     data(){
       return{
-        active: 'detailed',
+        active: 'record',
       }
     },
     methods:{

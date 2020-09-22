@@ -6,6 +6,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path:"/",
+    name: "layout",
+    redirect:'/record'
+  },
+  {
     path: '/',
     name: 'layout',
     component: Layout,
