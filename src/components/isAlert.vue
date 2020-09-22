@@ -17,7 +17,20 @@
     name: "isAlert.vue",
     data(){
       return{
-        isAlert:true
+        isAlert:true,
+        screenWidth:null,
+      }
+    },
+    created() {
+      window.addEventListener('resize',()=>{
+        this.screenWidth = document.body.offsetWidth;
+      })
+    },
+    watch:{
+      screenWidth(newVal,oldVal){
+        if(newVal < 500){
+          this.isAlert = false
+        }
       }
     },
     mounted() {
