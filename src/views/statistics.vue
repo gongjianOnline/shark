@@ -49,14 +49,11 @@
         this.popupShow = state
       },
       currentDate(dates){
-        console.log(dates)
         let data = (dayjs(dates).format('YYYY-MM')).split("-");
         this.date = {
           month:data[1],
           year:data[0]
         }
-        console.log("选择了日期")
-        console.log(this.date)
       }
     }
 

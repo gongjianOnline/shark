@@ -69,7 +69,6 @@
     methods:{
       renderCharts(date,state){
         let data = settle.pieFun(date,state);
-        console.log(data);
         this.option.legend.data = data.lengthArr;
         this.option.series[0].data = data.seriesArr;
         this.isShow = data.isShow;
