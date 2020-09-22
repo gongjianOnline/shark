@@ -8,7 +8,7 @@
         <navigation></navigation>
       </div>
     </div>
-
+    <is-alert class="IsAlert-wrapper"/>
   </div>
 </template>
 
@@ -18,9 +18,11 @@
   Vue.use(Tabbar);
   Vue.use(TabbarItem);
   import navigation from "@/components/navigation"
+  import IsAlert from "@/components/isAlert"
 export default {
   name: 'Home',
   components: {
+    IsAlert,
     navigation
   },
   data(){
@@ -35,6 +37,12 @@ export default {
   .home{
     max-width: 414px;
     margin: 0 auto;
+    position: relative;
+    > .IsAlert-wrapper{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
   }
   .Main-view{
     height: 100vh;
