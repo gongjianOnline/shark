@@ -1,7 +1,7 @@
 <template>
   <div>
     <type @updateType="updateType"/>
-    <overview  @choiceFun="choiceFun" :date="date"/>
+    <overview  @choiceFun="choiceFun" :date="date" :state="state"/>
     <statistical-select-date :popupShow="popupShow"
                              @currentDate="currentDate"
                              @popupIsShow="popupIsShow"/>
@@ -23,6 +23,7 @@
     data(){
       return{
         popupShow:false,
+        state:'-',
         date:{
           month:"",
           year:""
@@ -31,13 +32,15 @@
     },
     created() {
       let data = (dayjs().format('YYYY-MM')).split("-");
-      this.date.month  = data[1]
-      this.date.year  = data[0]
+      this.date = {
+        month:data[1],
+        year:data[0]
+      }
     },
     methods:{
       //操作状态
       updateType(type){
-        console.log(type)
+        this.state = type;
       },
       choiceFun(state){
         this.popupShow = state
@@ -48,8 +51,11 @@
       currentDate(dates){
         console.log(dates)
         let data = (dayjs(dates).format('YYYY-MM')).split("-");
-        this.date.month  = data[1]
-        this.date.year  = data[0]
+        this.date = {
+          month:data[1],
+          year:data[0]
+        }
+        console.log("选择了日期")
         console.log(this.date)
       }
     }

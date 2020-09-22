@@ -1,3 +1,4 @@
+/**创建账本**/
 import dayjs from "dayjs";
 const account = {
   //创建本地账本

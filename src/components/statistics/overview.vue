@@ -15,12 +15,12 @@
       <div class="overview-wrapper">
         <div class="border"></div>
         <div class="income">
-          <div class="title">总支出</div>
-          <div class="price">600</div>
+          <div class="title">{{state==='-'?'总支出':'总收入'}}</div>
+          <div class="price">{{Income.monthIncome}}</div>
         </div>
         <div class="expenditure">
-          <div class="title">平均支出</div>
-          <div class="price">20</div>
+          <div class="title">{{state==='-'?'平均每日支出':'平均每日收入'}}</div>
+          <div class="price">{{Income.averageIncome}}</div>
         </div>
       </div>
     </div>
@@ -28,21 +28,50 @@
 </template>
 
 <script lang="js">
+  import settle from "../../lib/settleAccounts";
   import Vue from 'vue';
   import { Icon } from 'vant';
 
   Vue.use(Icon);
   export default {
     name: "overview",
+    data(){
+      return{
+        Income:{},
+      }
+    },
     props:{
       date:{
         default: {}
+      },
+      state:{
+        default: '-'
       }
     },
-    methods:{
-      choiceFun(){
-        this.$emit("choiceFun",true)
+    watch:{
+      state(newVal,oldVal){
+        this.getRecord(this.date,newVal)
       },
+      date(newVal,oldVal){
+        this.getRecord(newVal,this.state)
+      }
+    },
+    mounted() {
+      this.getRecord(this.date,this.state)
+    },
+    methods:{
+      getRecord(date,state){
+        let data = settle.totalRecord(date,state);
+        console.log("回显结果");
+        console.log(data);
+        this.Income = data;
+      },
+      choiceFun(){
+        this.$emit("choiceFun",true);
+      },
+
+
+
     }
 
   }
