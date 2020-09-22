@@ -27,6 +27,6 @@ module.exports = {
     }
   ],
   "globals": {
-    "define": true  //xxxx -> 报错的变量
+    "define": true
   }
 }
