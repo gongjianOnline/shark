@@ -1,4 +1,11 @@
 module.exports = {
   lintOnSave: false,
-  publicPath:'./'
+  publicPath:'./',
+  devServer: {
+    overlay: {
+      warnings: false,
+      errors: false
+    },
+    lintOnSave: false
+  }
 }

@@ -98,10 +98,7 @@
                 init_data.push(obj)
               }
           })
-          console.log(init_data)
           this.filterList = init_data.reverse();
-          console.log("打印数据")
-          console.log(this.filterList);
           this.totalBill()
         }else{
           this.filterList = [];

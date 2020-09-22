@@ -42,7 +42,6 @@
     },
     computed:{
       modeShows(){
-        console.log("触发了")
         return `${this.modeShow}`
       }
     },
@@ -65,7 +64,6 @@
         this.numberPads += key
       },
       onDelete(){
-        console.log("这是删除按钮");
         this.numberPads =this.numberPads.substr(0,this.numberPads.length-1)
       }
     }

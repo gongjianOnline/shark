@@ -17,13 +17,18 @@
         active: 'record',
       }
     },
+    created() {
+      this.active = window.localStorage.getItem('active') || "record";
+    },
     methods:{
       onChange(){
+        window.localStorage.setItem('active',this.active)
         this.$router.push({
           name:this.active
         })
       }
-    }
+    },
+
 
 
   }

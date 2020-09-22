@@ -40,7 +40,6 @@
         } else if (type === 'month') {
           return `${val}月`;
         }
-        console.log(type,val)
       },
       confirm(){
         let date = (dayjs(this.currentDate).format('YYYY-MM').split('-'))

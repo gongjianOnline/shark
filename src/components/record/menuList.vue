@@ -41,8 +41,6 @@
     },
     mounted() {
       this.updateMenu('-');
-      console.log("打印时间")
-      console.log(dayjs().format('YYYY-MM-DD'))
     },
     methods:{
       updateMenu(data){
