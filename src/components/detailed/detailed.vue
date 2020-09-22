@@ -126,7 +126,7 @@
   @textColor:#f7f8fa;
   @iconColor:#606266;
   .detailed-view{
-    height: 81vh;
+    height: 79vh;
     overflow: auto;
     scrollbar-width: none;
     /* for Chrome */
