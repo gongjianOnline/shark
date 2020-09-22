@@ -5,8 +5,9 @@
     <statistical-select-date :popupShow="popupShow"
                              @currentDate="currentDate"
                              @popupIsShow="popupIsShow"/>
-    <charts-line :date="date" :state="state"/>
+    <charts-line :date="date" :state="state" @isShowChart="isShowCharts"/>
     <charts-pie :date="date" :state="state"/>
+    <Seat v-show="isShowChart"/>
   </div>
 </template>
 
@@ -17,9 +18,10 @@
   import dayjs from "dayjs"
   import ChartsLine from "../components/statistics/chartsLine"
   import ChartsPie from "../components/statistics/chartsPie";
+  import Seat from "../components/statistics/seat"
   export default {
     name: "statistics",
-    components: {ChartsPie, ChartsLine, StatisticalSelectDate, Overview, Type},
+    components: {Seat, ChartsPie, ChartsLine, StatisticalSelectDate, Overview, Type},
     data(){
       return{
         popupShow:false,
@@ -28,6 +30,7 @@
           month:"",
           year:""
         },
+        isShowChart:false,
       }
     },
     created() {
@@ -54,6 +57,12 @@
           month:data[1],
           year:data[0]
         }
+      },
+      //是否显示展位图
+      isShowCharts(state){
+        console.log("dayinle")
+        console.log(state)
+        this.isShowChart = !state
       }
     }
 

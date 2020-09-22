@@ -52,7 +52,7 @@ const settle  = {
       data.forEach((item,index)=>{
         let init_date = (item.day).split("-");
         xAxisData[index] = `${init_date[1]}-${init_date[2]}`;
-        let count = 0;
+        let count = null;
         item.data.forEach((itemChild,indexChild)=>{
           if(state === '-' && itemChild.type === "defrayList"){
             count += parseFloat(itemChild.price)
@@ -64,7 +64,21 @@ const settle  = {
         seriesData.push(count)
       })
     }
-    return {xAxisData:xAxisData,seriesData:seriesData,isData:!(xAxisData.length === 0)}
+    let isData = null;
+    if(!(xAxisData.length === 0)){
+     if(seriesData[0] === null){
+       isData = false
+     }else{
+       isData = true
+     }
+    }else{
+      isData = false
+    }
+    return {
+      xAxisData:xAxisData,
+      seriesData:seriesData,
+      isData:isData
+    }
   },
   pieFun(date,state) {
     let data = settle.initialize(date) || [];

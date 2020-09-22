@@ -61,6 +61,11 @@
             return
           }
         }
+        if(key === "00"){
+          if(this.numberPads == ""){
+            return
+          }
+        }
         this.numberPads += key
       },
       onDelete(){

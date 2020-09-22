@@ -72,6 +72,7 @@
         this.option.xAxis.data = data.xAxisData;
         this.option.series[0].data = data.seriesData;
         this.isData = data.isData;
+        this.$emit("isShowChart",data.isData)
         let myCharts= this.$echarts.init(document.getElementById("line"),"walden");
         myCharts.setOption(this.option);
       }
