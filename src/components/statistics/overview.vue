@@ -62,8 +62,6 @@
     methods:{
       getRecord(date,state){
         let data = settle.totalRecord(date,state);
-        console.log("回显结果");
-        console.log(data);
         this.Income = data;
       },
       choiceFun(){

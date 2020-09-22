@@ -1,22 +1,24 @@
 <template>
   <div>
-    <div class="ecarts" id="line"></div>
+    <div class="ecarts" id="line" v-show="isData"></div>
   </div>
 </template>
 
 <script lang="js">
-  import 'echarts/lib/chart/line'
+  import 'echarts/lib/chart/line';
+  import settle from "../../lib/settleAccounts";
   export default {
     name: "chartsLine.vue",
     data(){
       return{
+        isData:true,
         option:{
           xAxis: {
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
           },
           grid:{
-            left:10,
+            left:30,
             right:10,
             top:10,
             bottom:30
@@ -30,7 +32,7 @@
               show:false
             },
             axisLabel:{
-              show:false
+              show:true
             }
           },
           series: [{
@@ -41,11 +43,31 @@
         }
       }
     },
+    props:{
+      date:{
+        default:null
+      },
+      state:{
+        default:null
+      }
+    },
+    watch:{
+      date(newVal,oldVal){
+        this.renderCharts(newVal,this.state)
+      },
+      state(newVal,oldVal){
+        this.renderCharts(this.date,newVal)
+      }
+    },
     mounted() {
-      this.renderCharts()
+      this.renderCharts(this.date,this.state)
     },
     methods:{
-      renderCharts(){
+      renderCharts(date,state){
+        let data = settle.LineFun(date,state);
+        this.option.xAxis.data = data.xAxisData;
+        this.option.series[0].data = data.seriesData;
+        this.isData = data.isData;
         let myCharts= this.$echarts.init(document.getElementById("line"));
         myCharts.setOption(this.option);
       }

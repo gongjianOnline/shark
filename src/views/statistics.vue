@@ -5,8 +5,8 @@
     <statistical-select-date :popupShow="popupShow"
                              @currentDate="currentDate"
                              @popupIsShow="popupIsShow"/>
-    <charts-line/>
-    <charts-pie/>
+    <charts-line :date="date" :state="state"/>
+    <charts-pie :date="date" :state="state"/>
   </div>
 </template>
 

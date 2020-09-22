@@ -1,15 +1,17 @@
 <template>
   <div>
-    <div class="charts" id="pie"></div>
+    <div class="charts" id="pie" v-show="isShow"></div>
   </div>
 </template>
 
 <script>
-  import 'echarts/lib/chart/pie'
+  import 'echarts/lib/chart/pie';
+  import settle from "../../lib/settleAccounts";
   export default {
     name: "chartsPie",
     data(){
       return{
+        isShow:true,
         option:{
           tooltip: {
             trigger: 'item',
@@ -22,7 +24,7 @@
           },
           series: [
             {
-              name: '访问来源',
+              name: '月收入',
               type: 'pie',
               radius: '55%',
               center: ['50%', '55%'],
@@ -45,16 +47,36 @@
         }
       }
     },
+    props:{
+      date:{
+        default:null
+      },
+      state:{
+        default:null
+      }
+    },
+    watch:{
+      date(newVal,oldVal){
+        this.renderCharts(newVal,this.state)
+      },
+      state(newVal,oldVal){
+        this.renderCharts(this.date,newVal)
+      }
+    },
     mounted() {
-      this.renderCharts()
+      this.renderCharts(this.date,this.state)
     },
     methods:{
-      renderCharts(){
+      renderCharts(date,state){
+        let data = settle.pieFun(date,state);
+        console.log(data);
+        this.option.legend.data = data.lengthArr;
+        this.option.series[0].data = data.seriesArr;
+        this.isShow = data.isShow;
         let myCharts= this.$echarts.init(document.getElementById("pie"));
         myCharts.setOption(this.option);
       }
     }
-
   }
 </script>
 
