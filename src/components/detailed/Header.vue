@@ -2,9 +2,9 @@
   <div>
     <div class="head-wrapper">
       <div class="date-wrapper" @click="choiceFun">
-        <div class="year">{{queryDate.year || 0}}</div>
+        <div class="year">{{queryDate.year || '-'}}</div>
         <div class="month">
-          {{queryDate.month || 0}}
+          {{queryDate.month || '-'}}
           <span class="tagging">月</span>
           <span class="icon">
             <van-icon name="arrow-down" />

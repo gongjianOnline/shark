@@ -30,6 +30,8 @@
       screenWidth(newVal,oldVal){
         if(newVal < 500){
           this.isAlert = false
+        }else{
+          this.isAlert = true
         }
       }
     },
