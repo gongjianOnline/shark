@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detailed-view">
     <div class="detailed-wrapper"
          v-for="(item,index) in filterList"
          :key="index"
@@ -7,8 +7,8 @@
       <div class="detailed-date">
         <div>{{item.day}}</div>
         <div>
-          <span class="dayAccount">收入: {{item.dayExpenditure}}</span>
-          <span>支出: {{item.dayIncome}}</span>
+          <span class="dayAccount">收入: {{item.dayIncome}}</span>
+          <span>支出: {{item.dayExpenditure}}</span>
         </div>
       </div>
       <div class="detailed-content"
@@ -22,7 +22,7 @@
           <div class="icon-title">{{itemChild.name}}</div>
         </div>
         <div class="price-content">
-          {{itemChild.price}}
+          {{itemChild.type === "defrayList"?'-':"+"}} {{itemChild.price}}
         </div>
       </div>
     </div>
@@ -99,7 +99,9 @@
               }
           })
           console.log(init_data)
-          this.filterList = init_data;
+          this.filterList = init_data.reverse();
+          console.log("打印数据")
+          console.log(this.filterList);
           this.totalBill()
         }else{
           this.filterList = [];
@@ -126,15 +128,17 @@
   @backColor:#fff;
   @textColor:#f7f8fa;
   @iconColor:#606266;
-  .detailed-wrapper{
+  .detailed-view{
     height: 81vh;
     overflow: auto;
-    background: @backColor;
     scrollbar-width: none;
     /* for Chrome */
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+  .detailed-wrapper{
+    background: @backColor;
     >.detailed-date{
       display: flex;
       justify-content: space-between;

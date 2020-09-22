@@ -72,7 +72,7 @@
           icon:this.menuPitchIndex.icon,
           type:this.type,
           price:price,
-        }
+        };
         if(getData){
           let DayDate = (dayjs().format('YYYY-MM-DD')).split('-')
           //循环查找年月和日

@@ -12,6 +12,7 @@
     "@babel/preset-env": "^7.11.5",
     "core-js": "^3.6.5",
     "dayjs": "^1.8.36",
+    "echarts": "^4.9.0",
     "register-service-worker": "^1.7.1",
     "vant": "^2.10.7",
     "vue": "^2.6.11",

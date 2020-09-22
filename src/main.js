@@ -14,6 +14,9 @@ Vue.prototype.$ajax = axios;
 
 import "./assets/menuIcon/iconfont.css"
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -40,18 +40,18 @@ const account = {
     })
   },
   //创建同月不同日账本
-  createMonthNoDay(price){
+  createMonthNoDay(newDate){
     let getData = this.getAccount();
-    let DayDate = (dayjs().format('YYYY-MM-DD')).split('-')
+    let DayDate = (dayjs().format('YYYY-MM-DD')).split('-');
     getData.forEach((item,index)=>{
       for(let key in item){
         if(key === `${DayDate[0]}-${DayDate[1]}`){
           item[key][`${DayDate[2]}`] = []
           let dayData = {
-            name:this.menuPitchIndex.name,
-            icon:this.menuPitchIndex.icon,
-            type:this.type,
-            price:price,
+            name:newDate.name,
+            icon:newDate.icon,
+            type:newDate.type,
+            price:newDate.price,
           };
           item[key][`${DayDate[2]}`].push(dayData);
           account.preserveAccount(getData)
