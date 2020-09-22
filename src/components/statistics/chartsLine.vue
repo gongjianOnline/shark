@@ -22,7 +22,7 @@
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
           },
           grid:{
-            left:30,
+            left:50,
             right:10,
             top:10,
             bottom:30
