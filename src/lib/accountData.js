@@ -14,8 +14,6 @@ const account = {
   //保存账本
   preserveAccount(data){
     window.localStorage.setItem('account',JSON.stringify(data));
-    console.log("数据保存完成")
-    console.log(JSON.parse(window.localStorage.getItem('account')))
   },
   //获取账本
   getAccount(){
@@ -24,7 +22,6 @@ const account = {
 
   //创建同月同日账本
   createMonthDay(newData){
-    console.log("调用")
     let getData = account.getAccount();
     let DayDate = (dayjs().format('YYYY-MM-DD')).split('-')
     getData.forEach((time,index)=>{

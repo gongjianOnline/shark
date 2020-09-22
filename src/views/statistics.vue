@@ -60,8 +60,6 @@
       },
       //是否显示展位图
       isShowCharts(state){
-        console.log("dayinle")
-        console.log(state)
         this.isShowChart = !state
       }
     }

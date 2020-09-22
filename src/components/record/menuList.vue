@@ -86,7 +86,6 @@
             //发现月
             if(days.indexOf(`${DayDate[2]}`)>=0){
               //发现日
-              console.log(days)
               account.createMonthDay(newData)
             }else{
               //未发现日
