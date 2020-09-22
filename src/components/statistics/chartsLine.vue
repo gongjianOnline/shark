@@ -7,12 +7,16 @@
 <script lang="js">
   import 'echarts/lib/chart/line';
   import settle from "../../lib/settleAccounts";
+  import "../../assets/walden"
   export default {
     name: "chartsLine.vue",
     data(){
       return{
         isData:true,
         option:{
+          textStyle:{
+            fontSize:"16"
+          },
           xAxis: {
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -68,7 +72,7 @@
         this.option.xAxis.data = data.xAxisData;
         this.option.series[0].data = data.seriesData;
         this.isData = data.isData;
-        let myCharts= this.$echarts.init(document.getElementById("line"));
+        let myCharts= this.$echarts.init(document.getElementById("line"),"walden");
         myCharts.setOption(this.option);
       }
     },

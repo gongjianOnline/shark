@@ -7,12 +7,16 @@
 <script>
   import 'echarts/lib/chart/pie';
   import settle from "../../lib/settleAccounts";
+  import "../../assets/walden"
   export default {
     name: "chartsPie",
     data(){
       return{
         isShow:true,
         option:{
+          textStyle:{
+            fontSize:'16'
+          },
           tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -72,7 +76,7 @@
         this.option.legend.data = data.lengthArr;
         this.option.series[0].data = data.seriesArr;
         this.isShow = data.isShow;
-        let myCharts= this.$echarts.init(document.getElementById("pie"));
+        let myCharts= this.$echarts.init(document.getElementById("pie"),'walden');
         myCharts.setOption(this.option);
       }
     }
