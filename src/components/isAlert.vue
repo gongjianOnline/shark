@@ -8,6 +8,9 @@
           为了更好的体验,请用手机或浏览器F12模拟移动端浏览此项目
         </div>
       </div>
+      <div class="QRCode-wrapper">
+        <img :src="require('../assets/QRcode.png')" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -55,6 +58,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     > .explain{
       width: 70%;
       border-radius: 10px;
@@ -78,6 +82,16 @@
         color: #606266;
         line-height: 30px;
         padding: 0 10px;
+      }
+    }
+    > .QRCode-wrapper{
+      width: 86px;
+      height: 86px;
+      position: absolute;
+      bottom: 6%;
+      right: 20px;
+      > img{
+        width: 100%;
       }
     }
   }
